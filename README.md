@@ -1,7 +1,7 @@
 # First-steps
 first steps in AI
 # This bot draws pictures, he is shocked)
-# @title Необходимые функции
+#@title Необходимые функции
 !pip install jax==0.4.23 jaxlib==0.4.23
 !pip -q install diffusers
 !pip -q install transformers scipy ftfy accelerate
@@ -17,16 +17,15 @@ stableDiffusion = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffus
 stableDiffusion = stableDiffusion.to("cuda")
 
 def createImagesStableDiffusion(prompt='', rows=2, cols=2, iteration=20):
- 
-  # Let's start generation
-  images =  stableDiffusion([prompt] * (rows*cols), num_inference_steps=iteration).images
-  w, h = images[0].size
-  grid = Image.new('RGB', size=(cols*w, rows*h))
-  grid_w, grid_h = grid.size
+#Let's start generation
+images =  stableDiffusion([prompt] * (rows*cols), num_inference_steps=iteration).images
+w, h = images[0].size
+grid = Image.new('RGB', size=(cols*w, rows*h))
+grid_w, grid_h = grid.size
 
-  for i, img in enumerate(images):
-      grid.paste(img, box=(i%cols*w, i//cols*h))
-  display(grid)
+for i, img in enumerate(images):
+    grid.paste(img, box=(i%cols*w, i//cols*h))
+display(grid)
 
   # You need to run the code and then enter a command that includes text with the condition that you want the bot to draw, try it and be surprised
   # I will leave examples below
